@@ -35,6 +35,9 @@ class RekapGajiController extends Controller
             ->editColumn('lembur', function ($item) {
                 return 'Rp.' . number_format($item->lembur, 0, ',', '.');
             })
+            ->editColumn('uang_makan', function ($item) {
+                return 'Rp.' . number_format($item->uang_makan, 0, ',', '.');
+            })
             ->editColumn('bonus', function ($item) {
                 return 'Rp.' . number_format($item->bonus, 0, ',', '.');
             })
@@ -74,12 +77,13 @@ class RekapGajiController extends Controller
 
         for ($rowIndex = 2; $rowIndex <= $highestRow; $rowIndex++) {
             $nama       = trim($sheet->getCell("B$rowIndex")->getFormattedValue());
-            $gaji_pokok = str_replace([',', '.'], '', $sheet->getCell("AX$rowIndex")->getFormattedValue());
-            $lembur     = str_replace([',', '.'], '', $sheet->getCell("AY$rowIndex")->getFormattedValue());
-            $bonus      = str_replace([',', '.'], '', $sheet->getCell("AZ$rowIndex")->getFormattedValue());
-            $total      = str_replace([',', '.', 'Rp'], '', $sheet->getCell("AV$rowIndex")->getFormattedValue());
-            $email      = trim($sheet->getCell("BB$rowIndex")->getFormattedValue());
-            $jumlah     = trim($sheet->getCell("AW$rowIndex")->getFormattedValue());
+            $gaji_pokok = str_replace([',', '.'], '', $sheet->getCell("BR$rowIndex")->getFormattedValue());
+            $lembur     = str_replace([',', '.'], '', $sheet->getCell("BS$rowIndex")->getFormattedValue());
+            $uang_makan     = str_replace([',', '.'], '', $sheet->getCell("BT$rowIndex")->getFormattedValue());
+            $bonus      = str_replace([',', '.'], '', $sheet->getCell("BV$rowIndex")->getFormattedValue());
+            $total      = str_replace([',', '.', 'Rp'], '', $sheet->getCell("BP$rowIndex")->getFormattedValue());
+            $email      = trim($sheet->getCell("BX$rowIndex")->getFormattedValue());
+            $jumlah     = trim($sheet->getCell("BQ$rowIndex")->getFormattedValue());
 
             // Cek nama dan pastikan gaji pokok numerik
             if (!$nama || !is_numeric($gaji_pokok)) {
@@ -92,6 +96,7 @@ class RekapGajiController extends Controller
                     'nama'        => $nama,
                     'gaji_pokok'  => $gaji_pokok,
                     'lembur'      => is_numeric($lembur) ? $lembur : 0,
+                    'uang_makan'  => is_numeric($uang_makan) ? $uang_makan : 0,
                     'bonus'       => is_numeric($bonus) ? $bonus : 0,
                     'total_gaji'  => is_numeric($total) ? $total : 0,
                     'email'       => $email,

@@ -88,7 +88,8 @@
                                             <th>Jumlah Hari</th>
                                             <th>Gaji Pokok</th>
                                             <th>Lembur</th>
-                                            <th>Bonus</th>
+                                            <th>Uang Makan</th>
+                                            <th>Insentif</th>
                                             <th>Total</th>
                                             <th>Email</th>
                                         </tr>
@@ -159,6 +160,9 @@
                     },
                     {
                         data: 'lembur'
+                    },
+                    {
+                        data: 'uang_makan'
                     },
                     {
                         data: 'bonus'

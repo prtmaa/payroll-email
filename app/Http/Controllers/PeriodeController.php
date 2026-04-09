@@ -18,7 +18,8 @@ class PeriodeController extends Controller
 
     public function data()
     {
-        $periode = Periode::get();
+        $periode = Periode::orderBy('created_at', 'desc')
+            ->get();
 
         return datatables()
             ->of($periode)

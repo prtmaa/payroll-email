@@ -15,6 +15,7 @@ class RekapGaji extends Model
         'gaji_pokok',
         'lembur',
         'bonus',
+        'uang_makan',
         'total_gaji',
         'email',
         'periode_id',
